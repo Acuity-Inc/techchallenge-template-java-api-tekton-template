@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "4e5554e6-be49-447d-98eb-58aadea85942",
+		"name": "Springboot Template Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25152768",
+		"_collection_link": "https://blue-zodiac-630747.postman.co/workspace/tech-challenge-success~b5cb23c1-6505-46e3-896e-52b7da95b29f/collection/25152768-4e5554e6-be49-447d-98eb-58aadea85942?action=share&source=collection_link&creator=25152768"
+	},
+	"item": [
+		{
+			"name": "GET List of Parent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Parent by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parents/b1c71b31-f9c3-43e6-835a-4ce4606a1175",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parents",
+						"b1c71b31-f9c3-43e6-835a-4ce4606a1175"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Parent by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parents/b1c71b31-f9c3-43e6-835a-4ce4606a1175",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parents",
+						"b1c71b31-f9c3-43e6-835a-4ce4606a1175"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Parent by ID update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"b1c71b31-f9c3-43e6-835a-4ce4606a1175\",\r\n    \"parentName\": \"Josie\",\r\n    \"intField\": 2,\r\n    \"doubleField\": 2.0,\r\n    \"dateField\": \"2005-03-16\",\r\n    \"stringField\": \"My test string updated\",\r\n    \"booleanField\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new Parent",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parentName\": \"Jose\",\r\n    \"intField\": 1,\r\n    \"doubleField\": 1.0,\r\n    \"dateField\": \"2005-03-13\",\r\n    \"stringField\": \"My test string\",\r\n    \"booleanField\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET actuator discovery",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET actuator/health",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET actuator/health/custom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_JWT_HERE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health/custom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health",
+						"custom"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
