@@ -3,6 +3,9 @@ k9s:
 project:
   repository: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
   branch: main
+  dockerfile: Dockerfile
+  source: src
   fetch-submodules: false
   commits-to-fetch: 1
   pre-clean-dir: true
+  image-name: acuityinc/techchallenge-template-java-api-template

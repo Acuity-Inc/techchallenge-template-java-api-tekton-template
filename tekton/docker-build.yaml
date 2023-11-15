@@ -2,24 +2,23 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: kaniko
-  namespace: tekton-tasks
+  namespace: { { (datasource "gomplate-config").k8s.namespace } }
 spec:
   params:
     - name: IMAGE
       description: Name (reference) of the image to build.
-      default: danieltmcc/tsg-innolab-cicd-api
+      default: { { (datasource "gomplate-config").project.image-name } }
     - name: DOCKERFILE
       description: Path to the Dockerfile to build.
-      default: Dockerfile
+      default: { { (datasource "gomplate-config").project.dockerfile } }
     - name: CONTEXT
       description: The build context used by Kaniko.
-      default: src
+      default: { { (datasource "gomplate-config").project.source } }
     - name: EXTRA_ARGS
       default: ''
     - name: BUILDER_IMAGE
       description: The image on which builds will run
-      # default: gcr.io/kaniko-project/executor:latest
-      default: gcr.io/kaniko-project/executor:v0.16.0
+      default: gcr.io/kaniko-project/executor:latest
   workspaces:
     - name: output
   results:
