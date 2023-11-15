@@ -1,3 +1,5 @@
+k9s:
+  namespace: tekton-tasks
 project:
   repository: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
   branch: main
