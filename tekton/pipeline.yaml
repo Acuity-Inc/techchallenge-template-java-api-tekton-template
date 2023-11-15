@@ -25,14 +25,6 @@ spec:
     - name: imageTag
       description: Image tag
       default: 'latest'
-    - name: pathToYamlFile
-      description: k8s Deployment manifest
-      default: 'manifest.yaml'
-    - name: manifestUrl
-      description: The git repo that holds the manifest
-    - name: manifestRevision
-      description: The git branch that holds the manifest
-      default: main
   tasks:
     - name: clone-repo
       taskRef:
