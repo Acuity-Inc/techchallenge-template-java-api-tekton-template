@@ -1,0 +1,6 @@
+project:
+  repository: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
+  branch: main
+  fetch-submodules: false
+  commits-to-fetch: 1
+  pre-clean-dir: true

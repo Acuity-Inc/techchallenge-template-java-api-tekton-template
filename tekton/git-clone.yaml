@@ -10,26 +10,23 @@ spec:
     - name: url
       description: git url to clone
       type: string
-      default: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
+      default: { { (datasource "gomplate-config").project.repository } }
     - name: revision
       description: git revision to checkout (branch, tag, sha, ref�)
       type: string
-      default: ''
+      default: { { (datasource "gomplate-config").project.branch } }
     - name: submodules
       description: defines if the resource should initialize and fetch the submodules
       type: string
-      default: 'false'
+      default: { { (datasource "gomplate-config").project.fetch-submodules } }
     - name: depth
       description: performs a shallow clone where only the most recent commit(s) will be fetched
       type: string
-      default: '1'
+      default: { { (datasource "gomplate-config").project.commits-to-fetch } }
     - name: deleteExisting
       description: clean out the contents of the repo's destination directory (if it already exists) before trying to clone the repo there
       type: string
-      default: 'true'
-    - name: manifest-sha
-      description: Docker image sha to add to the manifest
-      optional: true
+      default: { { (datasource "gomplate-config").project.pre-clean-dir } }
   results:
     - name: commit
       description: The precise commit SHA that was fetched by this Task
