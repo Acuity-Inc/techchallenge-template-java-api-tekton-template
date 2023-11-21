@@ -66,17 +66,3 @@ jobs:
 
       - name: Log created issue
         run: echo "Issue ${{ steps.create.outputs.issue }} was created, see ${{ vars.TSG_INNOLAB_JIRA_BASE_URL }}/browse/${{ steps.create.outputs.issue }}"
-
-  pipeline-deploy:
-    runs-on: ubuntu-latest
-    needs: [integrate]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install gomplate
-        run: |
-          curl -o /usr/local/bin/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.11.6/gomplate_linux-amd64-slim
-          chmod 755 /usr/local/bin/gomplate
-      - name: Execute gomplate
-        run: gomplate --input-dir=tekton/ --output-dir=gomplate-final --datasource config=tekton/config.yaml
-      - name: Read gomplate substitutions
-        run: cat gomplate-final/*
