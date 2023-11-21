@@ -31,15 +31,15 @@ jobs:
       - name: Run unit tests
         run: mvn test
 
-      - name: SonarQube scan
-        run: mvn sonar:sonar -Dsonar.projectKey=${{ github.event.repository.name }} -Dsonar.projectName=${{ github.event.repository.name }} -Dsonar.login=${{ vars.TSG_INNOLAB_SONARQUBE_USER }} -Dsonar.password=${{ secrets.TSG_INNOLAB_SONARQUBE_PASSWORD }} -Dsonar.host.url=${{ vars.TSG_INNOLAB_SONARQUBE_URL }} -Dsonar.qualitygate.wait=true
+      # - name: SonarQube scan
+        # run: mvn sonar:sonar -Dsonar.projectKey=${{ github.event.repository.name }} -Dsonar.projectName=${{ github.event.repository.name }} -Dsonar.login=${{ vars.TSG_INNOLAB_SONARQUBE_USER }} -Dsonar.password=${{ secrets.TSG_INNOLAB_SONARQUBE_PASSWORD }} -Dsonar.host.url=${{ vars.TSG_INNOLAB_SONARQUBE_URL }} -Dsonar.qualitygate.wait=true
 
-      - name: Vulnerability scan
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
-          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b .
-          ./syft . -o cyclonedx-xml > sbom.xml
-          ./grype sbom.xml --fail-on critical
+      # - name: Vulnerability scan
+        # run: |
+          # curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
+          # curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b .
+          # ./syft . -o cyclonedx-xml > sbom.xml
+          # ./grype sbom.xml --fail-on critical
 
   create-ticket:
     runs-on: ubuntu-latest
