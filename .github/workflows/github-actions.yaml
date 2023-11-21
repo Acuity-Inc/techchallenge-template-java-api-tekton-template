@@ -69,7 +69,7 @@ jobs:
 
   pipeline-deploy:
     runs-on: ubuntu-latest
-    needs: [create-ticket]
+    needs: [integrate]
     steps:
       - name: Install gomplate
         run: |
