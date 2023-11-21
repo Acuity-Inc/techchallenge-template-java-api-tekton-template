@@ -1,0 +1,41 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: ci-cd-api
+  namespace: tekton-tasks
+spec:
+  pipelineRef:
+    name: build-and-deploy-pipeline-argo
+  podTemplate:
+    securityContext:
+      fsGroup: 65532
+  params:
+    - name: gitUrl
+      value: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
+    - name: gitRevision
+      value: master
+    - name: imageUrl
+      value: danieltmcc/tsg-innolab-cicd-api
+    - name: imageTag
+      value: '1.0'
+  serviceAccountName: tekton-sa
+  workspaces:
+    - name: git-source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
+    - name: git-manifest
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+    - name: git-ssh
+      secret:
+        secretName: git-ssh

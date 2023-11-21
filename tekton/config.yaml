@@ -1,0 +1,11 @@
+k8s:
+  namespace: tekton-tasks
+project:
+  repository: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
+  branch: main
+  dockerfile: Dockerfile
+  source: src
+  fetchSubmodules: false
+  commitsToFetch: 1
+  preCleanDir: true
+  imageName: acuityinc/techchallenge-template-java-api-template
