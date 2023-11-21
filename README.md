@@ -18,6 +18,10 @@ TBD
 
 See [the actual project README](README_PROJECT.md) for more information.
 
+## Deployment README
+
+See [the deployment README](tekton/README.md) for more information.
+
 ## Template Usage
 
 ### Pre-requisites
