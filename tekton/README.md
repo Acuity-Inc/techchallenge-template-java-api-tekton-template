@@ -3,8 +3,12 @@
 Prerequisite:
 
 1. Install [gomplate](https://gomplate.ca/)
-2. Customize the project config in [config.yaml](config.yaml)
-3. Configure and execute the pipeline that will contain the application
+2. Set GitHub Actions Secret `KUBE_CONFIG_DATA` encoded in base64 (try `cat $HOME/.kube/config | base64`)
+<!---
+2. Set GitHub Actions Secret `KUBE_CONFIG` encoded in base64 (try `cat $HOME/.kube/config | base64`)
+-->
+3. Customize the project config in [config.yaml](config.yaml)
+4. Configure and execute the pipeline that will contain the application
    1. Define [Git Clone](git-clone.yaml) Task
    2. Define [Docker Build](docker-build.yaml) Task
    3. Define [Kubectl Deploy](kubectl-deploy.yaml) Task
