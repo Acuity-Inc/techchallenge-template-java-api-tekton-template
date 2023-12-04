@@ -36,12 +36,18 @@ jobs:
       #   with:
       #     args: apply -f ./gomplate-final/git-clone.yaml
 
+      # - name: Define Git Clone Task
+      #   uses: kodermax/kubectl-aws-eks@main
+      #   env:
+      #     KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      #   with:
+      #     args: apply -f ./gomplate-final/git-clone.yaml
+
       - name: Define Git Clone Task
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/git-clone.yaml
+        uses: steebchen/kubectl@v2.0.0
+        with: # defaults to latest kubectl binary version
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          command: apply -f ./gomplate-final/git-clone.yaml
 
       # - uses: actions-hub/kubectl@master
       #   with:
