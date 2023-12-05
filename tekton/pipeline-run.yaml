@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   generateName: ci-cd-api-
-  namespace: { { (datasource "config").k8s.namespace } }
+  namespace: {{ (datasource "config").k8s.namespace }}
 spec:
   pipelineRef:
     name: build-and-deploy-pipeline-argo

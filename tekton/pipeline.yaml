@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: build-and-deploy-pipeline-argo
-  namespace: { { (datasource "config").k8s.namespace } }
+  namespace: {{ (datasource "config").k8s.namespace }}
 spec:
   workspaces:
     - name: git-source
