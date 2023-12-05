@@ -50,7 +50,7 @@ jobs:
         run: aws eks update-kubeconfig --name "acuity-nonprod" --region "us-east-2"
 
       - name: Define Git Clone Task
-        run: kubectl apply -f ./gomplate-final/git-clone.yaml
+        run: KUBECONFIG=/home/runner/.kube/config kubectl apply -f ./gomplate-final/git-clone.yaml
 
       # - uses: actions-hub/kubectl@master
       #   with:
