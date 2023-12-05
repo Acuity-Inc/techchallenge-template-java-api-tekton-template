@@ -26,68 +26,11 @@ jobs:
       - name: Execute gomplate
         run: gomplate --input-dir=tekton/ --output-dir=gomplate-final/ --datasource config=tekton/config.yaml
 
-      - name: Update kubeconfig
-        run: aws eks update-kubeconfig --name "acuity-nonprod" --region "us-east-2"
-
-      # - uses: actions-hub/kubectl@master
-      #   with:
-      #     args: apply -f ./gomplate-final/git-clone.yaml
-      - name: Define Git Clone Task
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/git-clone.yaml
-      # - name: Define Git Clone Task
-      #   uses: steebchen/kubectl@v2.0.0
-      #   with: # defaults to latest kubectl binary version
-      #     config: ${{ secrets.KUBE_CONFIG_DATA }}
-      #     command: apply -f ./gomplate-final/git-clone.yaml
-
-      # - name: Define Git Clone Task
-      #   run: kubectl apply -f ./gomplate-final/git-clone.yaml
-      # run: KUBECONFIG=/home/runner/.kube/config kubectl apply -f ./gomplate-final/git-clone.yaml
-
-      # - uses: actions-hub/kubectl@master
-      #   with:
-      #     args: apply -f ./gomplate-final/docker-build.yaml
-
-      - name: Define Docker Build Task
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/docker-build.yaml
-
-      # - uses: actions-hub/kubectl@master
-      #   with:
-      #     args: apply -f ./gomplate-final/kubectl-deploy.yaml
-
-      - name: Define Kubectl Deploy Task
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/kubectl-deploy.yaml
-
-      # - uses: actions-hub/kubectl@master
-      #   with:
-      #     args: apply -f ./gomplate-final/pipeline.yaml
-
-      - name: Define Pipeline
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/pipeline.yaml
-
-      # - uses: actions-hub/kubectl@master
-      #   with:
-      #     args: apply -f ./gomplate-final/pipeline-run.yaml
-
-      - name: Define PipelineRun
-        uses: kodermax/kubectl-aws-eks@main
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f ./gomplate-final/pipeline-run.yaml
+      - name: Deploy k8s artifacts and start PipelineRun
+        run: |
+          aws eks update-kubeconfig --name "acuity-nonprod" --region "us-east-2"
+          kubectl apply -f ./gomplate-final/git-clone.yaml
+          kubectl apply -f ./gomplate-final/docker-build.yaml
+          kubectl apply -f ./gomplate-final/kubectl-deploy.yaml
+          kubectl apply -f ./gomplate-final/pipeline.yaml
+          kubectl apply -f ./gomplate-final/pipeline-run.yaml
