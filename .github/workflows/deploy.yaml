@@ -34,4 +34,4 @@ jobs:
           kubectl apply -f ./gomplate-final/docker-build.yaml
           kubectl apply -f ./gomplate-final/kubectl-deploy.yaml
           kubectl apply -f ./gomplate-final/pipeline.yaml
-          kubectl apply -f ./gomplate-final/pipeline-run.yaml
+          kubectl create -f ./gomplate-final/pipeline-run.yaml
