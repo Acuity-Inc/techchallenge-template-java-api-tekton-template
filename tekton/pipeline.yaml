@@ -20,6 +20,9 @@ spec:
     - name: pathToContext
       description: The path to the build context, used by Kaniko - within the workspace
       default: src
+    - name: pathToYamlFile
+      description: The build manifest for the application deployment
+      default: gomplate-final/manifest.yaml
     - name: imageUrl
       description: Image name including repository
     - name: imageTag
@@ -64,7 +67,6 @@ spec:
           workspace: git-source
       params:
         - name: pathToYamlFile
-          default: gomplate-final/manifest.yaml
           value: $(params.pathToYamlFile)
         - name: imageUrl
           value: $(params.imageUrl):$(tasks.clone-repo.results.commit)
