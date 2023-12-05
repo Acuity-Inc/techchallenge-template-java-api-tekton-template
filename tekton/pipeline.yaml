@@ -64,6 +64,7 @@ spec:
           workspace: git-source
       params:
         - name: pathToYamlFile
+          default: gomplate-final/manifest.yaml
           value: $(params.pathToYamlFile)
         - name: imageUrl
           value: $(params.imageUrl):$(tasks.clone-repo.results.commit)
