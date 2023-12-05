@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: { { (datasource "config").project.projectName } }
+  name: { { (datasource "config").project.projectName } }
+  namespace: { { (datasource "config").k8s.namespace } }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: { { (datasource "config").project.projectName } }
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: { { (datasource "config").project.projectName } }
+    spec:
+      containers:
+        - image: __IMAGE__
+          name: { { (datasource "config").project.projectName } }
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tsg-innolab-app-service
+  namespace: { { (datasource "config").k8s.namespace } }
+  labels:
+    app: tsg-innolab-app-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: { { (datasource "config").project.projectName } }
+      port: 80
+      targetPort: 8080
+  selector:
+    app: { { (datasource "config").project.projectName } }

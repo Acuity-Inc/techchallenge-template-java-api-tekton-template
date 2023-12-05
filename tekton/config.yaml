@@ -9,3 +9,4 @@ project:
   commitsToFetch: 1
   preCleanDir: true
   imageName: acuityinc/techchallenge-template-java-api-template
+  projectName: tsg-innolab-app
