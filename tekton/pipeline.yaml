@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: build-and-deploy-pipeline-argo
-  namespace: tekton-tasks
+  namespace: { { (datasource "config").k8s.namespace } }
 spec:
   workspaces:
     - name: git-source
@@ -24,7 +24,7 @@ spec:
       description: Image name including repository
     - name: imageTag
       description: Image tag
-      default: 'latest'
+      default: "latest"
   tasks:
     - name: clone-repo
       taskRef:
@@ -34,13 +34,13 @@ spec:
           workspace: git-source
       params:
         - name: url
-          value: '$(params.gitUrl)'
+          value: "$(params.gitUrl)"
         - name: revision
-          value: '$(params.gitRevision)'
+          value: "$(params.gitRevision)"
         - name: subdirectory
-          value: '.'
+          value: "."
         - name: deleteExisting
-          value: 'true'
+          value: "true"
     - name: source-to-image
       taskRef:
         name: kaniko
