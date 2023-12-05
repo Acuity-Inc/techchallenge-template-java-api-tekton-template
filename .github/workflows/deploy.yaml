@@ -18,13 +18,11 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-2
 
-      - name: Install gomplate
+      - name: Install and execute gomplate
         run: |
           curl -o /usr/local/bin/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.11.6/gomplate_linux-amd64-slim
           chmod 755 /usr/local/bin/gomplate
-
-      - name: Execute gomplate
-        run: gomplate --input-dir=tekton/ --output-dir=gomplate-final/ --datasource config=tekton/config.yaml
+          gomplate --input-dir=tekton/ --output-dir=gomplate-final/ --datasource config=tekton/config.yaml
 
       - name: Deploy k8s artifacts and start PipelineRun
         run: |
