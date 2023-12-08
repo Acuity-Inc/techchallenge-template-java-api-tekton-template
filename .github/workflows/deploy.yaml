@@ -28,6 +28,8 @@ jobs:
         run: |
           aws eks update-kubeconfig --name "acuity-nonprod" --region "us-east-2"
           eval $(aws sts assume-role --role-arn arn:aws:iam::336476408574:role/eks-admin-nonprod --role-session-name kubectl | jq -r '.Credentials | "export AWS_ACCESS_KEY_ID=\(.AccessKeyId)\nexport AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey)\nexport AWS_SESSION_TOKEN=\(.SessionToken)\n"')
+          sh ./gomplate-final/create-secret.sh
+          kubectl apply -f ./gomplate-final/service-account.yaml
           kubectl apply -f ./gomplate-final/git-clone.yaml
           kubectl apply -f ./gomplate-final/docker-build.yaml
           kubectl apply -f ./gomplate-final/kubectl-deploy.yaml
