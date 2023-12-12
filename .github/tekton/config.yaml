@@ -1,10 +1,6 @@
 k8s:
   namespace: tekton-tasks
   serviceAccountName: tekton-sa
-git:
-  username: ${{ secrets.GIT_USERNAME }}
-  password: ${{ secrets.GIT_PASSWORD }}
-  email: ${{ secrets.GIT_EMAIL }}
 project:
   repository: https://github.com/Acuity-Inc/techchallenge-template-java-api-template.git
   branch: main
