@@ -1,4 +1,5 @@
-kubectl create secret docker-registry regcred \
+# Use patch instead of create to avoid errors if the Secret exists
+kubectl patch secret docker-registry regcred \
 --docker-server=https://index.docker.io/v1/ \
 --docker-username={{ (datasource "config").git.username }} \
 --docker-password={{ (datasource "config").git.password }} \
