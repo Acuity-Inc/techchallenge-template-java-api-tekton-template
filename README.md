@@ -1,5 +1,4 @@
 ![myacuity-logo](https://myacuity.com/wp-content/uploads/2021/06/brand.svg)
-
 # Acuity SpringBoot Microservice Template
 
 This project is a template SpringBoot microservice project to allow teams to quickly spin up new API services.  It is designed to be containerized and deployed to a kubernetes cluster (EKS).
